@@ -1,0 +1,97 @@
+
+<!-- kkkk -->
+
+<!--component.component.html -->
+<div id="content" *ngIf="showContent">
+    <nav class="navbar navbar-light bg-primary">
+      <div class="container-fluid">
+        <h1 style="color: aliceblue;">Employee Details</h1>
+        <div class="d-flex">
+          <button (click)="clickAddEmployee()" type="button" class="btn btn-success">Add New button</button>
+        </div>
+      </div>
+    </nav>
+
+       <!-- Table Section -->
+<table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Emp id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email id</th>
+        <th scope="col">Mobile No</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of employeeData">
+        <td>{{row.id}}</td>
+        <td>{{row.firstName}}</td>
+        <td>{{row.lastName}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.mobile}}</td>
+        <td>{{row.salary}}</td>
+        <td>
+          <button (click)="onEdit(row)" class="btn btn-info" type="button">Edit</button>
+          <button (click)="deleteEmployee(row)" class="btn btn-danger max-3">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+</div> 
+
+
+
+    <!-- Form Section -->
+<div *ngIf="showForm" class="inputform">
+    <h3>Employee Details</h3>
+    <div class="container">
+        <form [formGroup]="formValue">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <label for="id_firstname" class="form-label">First Name</label>
+              <input type="text" formControlName="firstName" class="form-control" id="id_firstname">
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <label for="id_lastname" class="form-label">Last Name</label>
+              <input type="text" formControlName="lastName" class="form-control" id="id_lastname">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <label for="id_email" class="form-label">Email</label>
+              <input type="email" formControlName="email" class="form-control" id="id_email" placeholder="">
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <label for="id_mobile" class="form-label">Mobile number</label>
+              <input type="number" formControlName="mobile" class="form-control" id="id_mobile" placeholder="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <label for="id_salary" class="form-label">Salary</label>
+              <input type="text" formControlName="salary" class="form-control" id="id_salary">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <button type="button" (click)="closeForm()" id="cancel" class="btn btn-secondary">Close</button>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <button type="button" *ngIf="showAdd" class="btn btn-success" (click)="postEmployeeDetails()">Add</button>
+            
+              <button type="button" *ngIf="showUpdate" class="btn btn-primary" (click)="updateEmployeeDetails()">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      
+</div>
+
+      
+<!-- kkkkk -->
